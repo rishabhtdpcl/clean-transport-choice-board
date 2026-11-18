@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Transport Choice Board | Group 9</title>
+
+  <style>
+    /* ---------- Basic page setup ---------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #222;
+      background-color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1, h2, h3 {
+      color: #1b2a3a;
+      line-height: 1.25;
+    }
+
+    a {
+      color: #1e5aa8;
+    }
+
+    /* ---------- Navigation bar ---------- */
+    header {
+      background-color: #1e5aa8;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 50px 0;
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .intro {
+      background-color: #f4f7fb;
+    }
+
+    .intro h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      font-size: 18px;
+      max-width: 700px;
+    }
+
+    .grey {
+      background-color: #f7f7f7;
+    }
+
+    /* ---------- Trip planner form ---------- */
+    .planner {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .form-box {
+      flex: 1;
+      min-width: 280px;
+      border: 1px solid #d5d5d5;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .result-box {
+      flex: 1.4;
+      min-width: 280px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 14px;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 9px;
+      font-size: 16px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    .checkbox-label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background-color: #1e5aa8;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #17487f;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* ---------- Results ---------- */
+    .best-option {
+      background-color: #e8f1fb;
+      border-left: 5px solid #1e5aa8;
+      padding: 15px 18px;
+      margin-bottom: 20px;
+    }
+
+    .best-option h3 {
+      margin: 0 0 5px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 9px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    .highlight {
+      background-color: #eef7ee;
+      font-weight: 600;
+    }
+
+    .savings {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .saving-card {
+      flex: 1;
+      min-width: 140px;
+      border: 1px solid #d5d5d5;
+      border-radius: 8px;
+      padding: 12px 15px;
+    }
+
+    .saving-card .big {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    /* ---------- Network and stats cards ---------- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #d5d5d5;
+      border-radius: 8px;
+      padding: 18px;
+      background-color: white;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card .number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1e5aa8;
+    }
+
+    .flow {
+      font-weight: 600;
+      background-color: white;
+      border: 1px solid #d5d5d5;
+      padding: 12px 15px;
+      border-radius: 8px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background-color: #1b2a3a;
+      color: #ddd;
+      padding: 25px 0;
+      font-size: 14px;
+    }
+
+    /* ---------- Mobile layout ---------- */
+    @media (max-width: 750px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+
+      .intro h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">Clean Transport Choice Board</div>
+      <nav class="nav-links">
+        <a href="#planner">Trip Planner</a>
+        <a href="#network">The Network</a>
+        <a href="#why">Why It Matters</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Introduction -->
+  <section class="intro">
+    <div class="container">
+      <h1>Reducing Karnataka's dependence on petrol and diesel, one trip at a time</h1>
+      <p>
+        Enter your daily trip and see which way of travelling uses the least fuel.
+        The planner compares time, cost and petrol use, and shows how much you
+        could save in a month by switching.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trip planner -->
+  <section id="planner">
+    <div class="container">
+      <h2>Trip Planner</h2>
+
+      <div class="planner">
+
+        <!-- Inputs -->
+        <div class="form-box">
+          <label for="distance">Distance of your trip (km, one way)</label>
+          <input type="number" id="distance" value="12" min="0.5" step="0.5">
+
+          <label for="usualMode">How do you usually travel?</label>
+          <select id="usualMode">
+            <option value="car">Car</option>
+            <option value="bike" selected>Two-wheeler</option>
+            <option value="bus">Bus</option>
+            <option value="shared">Auto / cab</option>
+          </select>
+
+          <label for="petrolPrice">Petrol price (₹ per litre)</label>
+          <input type="number" id="petrolPrice" value="110.82" step="0.01">
+
+          <label for="busFare">Your bus fare (₹ per trip)</label>
+          <input type="number" id="busFare" value="25" step="1">
+
+          <label for="tripsPerMonth">Trips per month</label>
+          <input type="number" id="tripsPerMonth" value="44" step="1">
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="noEbus"> No e-bus on my route
+          </label>
+
+          <button onclick="calculateTrip()">Find the best option</button>
+
+          <p class="note">
+            Petrol price is for Bengaluru on 6 Nov 2026. 44 trips = 22 working days, both ways.
+            Times and costs are estimates.
+          </p>
+        </div>
+
+        <!-- Results -->
+        <div class="result-box">
+          <div class="best-option" id="bestOption"></div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Time</th>
+                <th>Cost</th>
+                <th>Petrol used</th>
+              </tr>
+            </thead>
+            <tbody id="resultTable"></tbody>
+          </table>
+
+          <h3>Your monthly savings</h3>
+          <div class="savings" id="savings"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The network -->
+  <section id="network" class="grey">
+    <div class="container">
+      <h2>The Karnataka Clean Transport Network</h2>
+      <p>
+        In CA3.1 we found that no single solution can remove fuel dependence on its own.
+        Our solution combines six parts that support each other.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Electric Buses</h3>
+          <div class="number">5,250</div>
+          <p>e-buses allocated to Karnataka (4,500 under PM E-DRIVE and 750 under PM-eBus Sewa).</p>
+        </div>
+
+        <div class="card">
+          <h3>EV Charging</h3>
+          <div class="number">5,765</div>
+          <p>public charging stations, the highest in India, with 4,462 in Bengaluru Urban.</p>
+        </div>
+
+        <div class="card">
+          <h3>Battery Swapping</h3>
+          <div class="number">₹10,000</div>
+          <p>subsidy per 200 swaps under the Karnataka Clean Mobility Policy 2025–30.</p>
+        </div>
+
+        <div class="card">
+          <h3>Renewable Charging</h3>
+          <div class="number">Solar</div>
+          <p>Solar panels at bus depots and parking areas can power EV chargers with clean electricity.</p>
+        </div>
+
+        <div class="card">
+          <h3>Ethanol Blending</h3>
+          <div class="number">E20</div>
+          <p>India reached 20% ethanol blending in petrol in 2025–26, reducing crude oil use.</p>
+        </div>
+
+        <div class="card">
+          <h3>Public Transport</h3>
+          <div class="number">1 bus</div>
+          <p>can replace dozens of private vehicles, which is the cheapest way to save fuel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it matters -->
+  <section id="why">
+    <div class="container">
+      <h2>Why It Matters</h2>
+      <p>
+        Our project started with the global problem of crude oil supply volatility.
+        In Karnataka, this problem reaches people mainly through transport fuel prices.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="number">88.7%</div>
+          <p>of India's crude oil was imported in 2025–26.</p>
+        </div>
+        <div class="card">
+          <div class="number">34%</div>
+          <p>of the world's energy came from oil in 2024.</p>
+        </div>
+        <div class="card">
+          <div class="number">₹110.82</div>
+          <p>price of one litre of petrol in Bengaluru (6 Nov 2026).</p>
+        </div>
+      </div>
+
+      <p class="flow" style="margin-top: 25px;">
+        Crude oil price rises → Petrol and diesel cost more → Transport costs rise → Prices of goods go up
+      </p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="grey">
+    <div class="container">
+      <h2>About the Project</h2>
+      <p>
+        This website was made by Group 9 for the Transdisciplinary Project-Centric Learning (TD-PCL)
+        course at JAIN (Deemed-to-be University), School of Commerce. It is a student project and is
+        not an official service of the Government of Karnataka, BMTC or KSRTC.
+      </p>
+
+      <h3>Team Members</h3>
+      <ul>
+        <li>Rishabh Dinesh (25BCR00206)</li>
+        <li>Lakshitha Mohaan Talamarala (25BCR00909)</li>
+      </ul>
+
+      <h3>Sources</h3>
+      <ul>
+        <li><a href="https://pm-ebus-sewa.mohua.gov.in/wp-content/uploads/2026/03/https-www.pib_.gov_.in-PressReleasePage.aspx-PRID2237554reg3lang2-1.pdf">PIB – State-wise allocation of e-buses (March 2026)</a></li>
+        <li><a href="https://deccanherald.com/india/karnataka/karnataka-has-highest-number-of-ev-charging-stations-in-country-bureau-of-energy-efficiency-3156270">Deccan Herald – Karnataka has highest number of EV charging stations (BEE data)</a></li>
+        <li><a href="https://www.saurenergy.com/solar-energy-news/karnataka-clean-mobility-policy-2025-30-aims-to-attract-₹50000-cr">Saur Energy – Karnataka Clean Mobility Policy 2025–30</a></li>
+        <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jul/doc202675912001.pdf">PIB – Ethanol Blended Petrol Programme backgrounder (July 2026)</a></li>
+        <li><a href="https://theprint.in/economy/indias-crude-import-dependence-rises-to-record-88-7-as-domestic-output-continues-to-decline/2998114/">ThePrint – India's crude import dependence at 88.7%</a></li>
+        <li><a href="https://www.aogr.com/web-exclusives/exclusive-story/statistical-review-of-world-energy-reinforces-hydrocarbons-importance">Energy Institute Statistical Review of World Energy 2025</a></li>
+        <li><a href="https://www.thehansindia.com/business/market-compass/petrol-and-diesel-prices-today-in-hyderabad-delhi-chennai-and-mumbai-on-06-november-2026-1139814">The Hans India – Fuel prices on 6 November 2026</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Clean Transport Choice Board · TD-PCL Group 9 · JAIN (Deemed-to-be University) · 2026
+    </div>
+  </footer>
+
+
+  <script>
+    // Each travel option: average speed (km/h), waiting time (min) and mileage (km per litre).
+    // Mileage is 0 for options that do not use petrol.
+    const options = [
+      { id: "walk",   name: "Walk",               speed: 5,  wait: 0,  mileage: 0 },
+      { id: "cycle",  name: "Cycle",              speed: 12, wait: 0,  mileage: 0 },
+      { id: "bus",    name: "Electric bus",       speed: 15, wait: 10, mileage: 0 },
+      { id: "shared", name: "EV / shared ride",   speed: 18, wait: 5,  mileage: 0 },
+      { id: "bike",   name: "Petrol two-wheeler", speed: 22, wait: 0,  mileage: 45 },
+      { id: "car",    name: "Private car",        speed: 18, wait: 0,  mileage: 14 }
+    ];
+
+    const sharedRideCostPerKm = 15; // approximate auto / cab fare in ₹ per km
+
+
+    // Travel time in minutes
+    function getTime(option, distance) {
+      return Math.round((distance / option.speed) * 60 + option.wait);
+    }
+
+    // Petrol used in litres
+    function getPetrol(option, distance) {
+      if (option.mileage === 0) {
+        return 0;
+      }
+      return distance / option.mileage;
+    }
+
+    // Cost of one trip in ₹
+    function getCost(option, distance, petrolPrice, busFare) {
+      if (option.id === "bus") {
+        return busFare;
+      }
+      if (option.id === "shared") {
+        return distance * sharedRideCostPerKm;
+      }
+      return getPetrol(option, distance) * petrolPrice;
+    }
+
+    // Choose the recommended option based on distance
+    function getRecommendation(distance, noEbus) {
+      if (distance <= 1.5) {
+        return "walk";
+      } else if (distance <= 5) {
+        return "cycle";
+      } else if (noEbus) {
+        return "shared";
+      } else {
+        return "bus";
+      }
+    }
+
+    // Show time as "45 min" or "1 hr 10 min"
+    function formatTime(minutes) {
+      if (minutes < 60) {
+        return minutes + " min";
+      }
+      return Math.floor(minutes / 60) + " hr " + (minutes % 60) + " min";
+    }
+
+    function findOption(id) {
+      return options.find(function (option) {
+        return option.id === id;
+      });
+    }
+
+
+    // Main function: runs when the button is clicked
+    function calculateTrip() {
+      const distance = parseFloat(document.getElementById("distance").value) || 0;
+      const usualId = document.getElementById("usualMode").value;
+      const petrolPrice = parseFloat(document.getElementById("petrolPrice").value) || 0;
+      const busFare = parseFloat(document.getElementById("busFare").value) || 0;
+      const trips = parseInt(document.getElementById("tripsPerMonth").value) || 0;
+      const noEbus = document.getElementById("noEbus").checked;
+
+      const bestId = getRecommendation(distance, noEbus);
+      const best = findOption(bestId);
+
+      // 1. Recommended option box
+      document.getElementById("bestOption").innerHTML =
+        "<p class='note' style='margin:0'>Recommended for this trip</p>" +
+        "<h3>" + best.name + "</h3>" +
+        "<p style='margin:0'>" + formatTime(getTime(best, distance)) +
+        " · ₹" + Math.round(getCost(best, distance, petrolPrice, busFare)) +
+        " · no petrol used</p>";
+
+      // 2. Comparison table
+      let rows = "";
+      for (let i = 0; i < options.length; i++) {
+        const option = options[i];
+
+        // skip options that don't make sense for this trip
+        if (option.id === "bus" && noEbus) continue;
+        if (option.id === "walk" && distance > 6) continue;
+        if (option.id === "cycle" && distance > 15) continue;
+
+        const petrol = getPetrol(option, distance);
+        const rowClass = option.id === bestId ? "highlight" : "";
+
+        rows += "<tr class='" + rowClass + "'>" +
+                "<td>" + option.name + "</td>" +
+                "<td>" + formatTime(getTime(option, distance)) + "</td>" +
+                "<td>₹" + Math.round(getCost(option, distance, petrolPrice, busFare)) + "</td>" +
+                "<td>" + (petrol > 0 ? petrol.toFixed(2) + " L" : "None") + "</td>" +
+                "</tr>";
+      }
+      document.getElementById("resultTable").innerHTML = rows;
+
+      // 3. Monthly savings compared with the usual mode
+      const usual = findOption(usualId);
+      const petrolSaved = (getPetrol(usual, distance) - getPetrol(best, distance)) * trips;
+      const moneySaved = (getCost(usual, distance, petrolPrice, busFare) -
+                          getCost(best, distance, petrolPrice, busFare)) * trips;
+
+      if (petrolSaved > 0) {
+        document.getElementById("savings").innerHTML =
+          "<div class='saving-card'><div class='big'>" + petrolSaved.toFixed(1) + " L</div>petrol saved per month</div>" +
+          "<div class='saving-card'><div class='big'>₹" + Math.max(0, Math.round(moneySaved)).toLocaleString("en-IN") + "</div>money saved per month</div>";
+      } else {
+        document.getElementById("savings").innerHTML =
+          "<p>Your usual way of travelling already uses little or no petrol. Keep it up!</p>";
+      }
+    }
+
+    // Show results when the page first loads
+    calculateTrip();
+  </script>
+
+</body>
+</html>
